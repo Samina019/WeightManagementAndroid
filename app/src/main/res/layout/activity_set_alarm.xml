@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:showIn="@layout/fragment_sleep">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
+        android:background="@drawable/border_shadow">
+
+        <TextView
+            android:id="@+id/textView_description"
+            android:text="@string/desc_settings"
+            android:textSize="9pt"
+            android:textColor="@color/context"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/button_bedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_description"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_alignParentLeft="true"
+            android:text="@string/pick_bedTime"
+            android:textSize="6pt"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/textView_bedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/button_bedTime"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="@dimen/settings_value_margin"
+            android:layout_alignParentRight="true"
+            android:textSize="8pt"
+            android:text="@string/no_Time"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/button_latestWakeUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_bedTime"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_alignParentLeft="true"
+            android:text="@string/pick_wakeTime"
+            android:textSize="6pt"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/textView_wakeTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/button_latestWakeUp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="@dimen/settings_value_margin"
+            android:layout_alignParentRight="true"
+            android:textSize="8pt"
+            android:text="@string/no_Time"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/textView_calcTimeDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_latestWakeUp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/settings_value_margin"
+            android:layout_alignParentLeft="true"
+            android:textSize="8pt"
+            android:textColor="@color/action"
+            android:text="@string/calc_Time"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/textView_calcTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_latestWakeUp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/settings_value_margin"
+            android:layout_alignParentRight="true"
+            android:textSize="8pt"
+            android:textColor="@color/action"
+            android:text="@string/no_calcTime"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_latestWakeUp"
+            android:layout_marginTop="70dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/button_send"
+            android:textSize="10pt"
+            android:textColor="@color/actionbar_text"
+            android:id="@+id/button_setAlarm" />
+
+        <TextView
+            android:id="@+id/textView_alarmTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textSize="8pt"
+            android:textColor="@color/actionbar_text"
+            android:layout_alignTop="@id/button_setAlarm"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

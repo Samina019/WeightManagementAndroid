@@ -1,0 +1,123 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:showIn="@layout/fragment_exercise"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_shadow"
+        android:padding="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvChooseExercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="@string/choose_exercise"/>
+
+        <LinearLayout
+            android:id="@+id/layoutWalking"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/walkk"/>
+
+            <TextView
+                android:id="@+id/tvWalking"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/walking"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutRunning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/run"/>
+
+            <TextView
+                android:id="@+id/tvRunning"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/running"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutBicycling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bicycle"/>
+
+            <TextView
+                android:id="@+id/tvBicycling"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cycling"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="25dp">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/log_button"
+                android:src = "@drawable/history_icon"
+                android:tint="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:background="@drawable/circle_button"
+                android:contentDescription="@string/todo" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/outlines_button"
+                android:src = "@drawable/info"
+                android:tint="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/circle_button"
+                android:contentDescription="@string/todo"
+                tools:ignore="RtlHardcoded" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

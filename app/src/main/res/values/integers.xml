@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="weight_min_value">30</integer>
+    <integer name="weight_max_vlaue">200</integer>
+    <integer name="water_recom_number_min_value">1000</integer>
+    <integer name="water_recom_number_max_value">5000</integer>
+
+
+</resources>
