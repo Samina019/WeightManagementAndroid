@@ -1,8 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:orientation="vertical"
     tools:showIn="@layout/fragment_sleep">
 
     <RelativeLayout
@@ -16,9 +17,10 @@
 
         <TextView
             android:id="@+id/textView_description"
-            android:text="@string/desc_settings"
+            android:text="Track your Sleep time"
             android:textSize="9pt"
-            android:textColor="@color/context"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,35 +28,12 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             tools:ignore="RtlHardcoded" />
 
-        <Button
-            android:id="@+id/button_bedTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_description"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_alignParentLeft="true"
-            android:text="@string/pick_bedTime"
-            android:textSize="6pt"
-            tools:ignore="RtlHardcoded" />
-
-        <TextView
-            android:id="@+id/textView_bedTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/button_bedTime"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="@dimen/settings_value_margin"
-            android:layout_alignParentRight="true"
-            android:textSize="8pt"
-            android:text="@string/no_Time"
-            tools:ignore="RtlHardcoded" />
 
         <Button
             android:id="@+id/button_latestWakeUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button_bedTime"
+            android:layout_below="@id/textView_description"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_alignParentLeft="true"
@@ -69,60 +48,69 @@
             android:layout_alignTop="@id/button_latestWakeUp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="@dimen/settings_value_margin"
-            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
             android:textSize="8pt"
+            android:layout_toEndOf="@id/button_latestWakeUp"
             android:text="@string/no_Time"
             tools:ignore="RtlHardcoded" />
 
         <TextView
-            android:id="@+id/textView_calcTimeDesc"
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button_latestWakeUp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="@dimen/settings_value_margin"
-            android:layout_alignParentLeft="true"
-            android:textSize="8pt"
-            android:textColor="@color/action"
-            android:text="@string/calc_Time"
-            tools:ignore="RtlHardcoded" />
-
-        <TextView
-            android:id="@+id/textView_calcTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/button_latestWakeUp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="@dimen/settings_value_margin"
-            android:layout_alignParentRight="true"
-            android:textSize="8pt"
-            android:textColor="@color/action"
-            android:text="@string/no_calcTime"
-            tools:ignore="RtlHardcoded" />
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/context"
+            android:gravity="center"
+            android:layout_below="@+id/textView_wakeTime"
+            android:layout_centerHorizontal="true"
+            android:text="You can save record or just set alarm"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button_latestWakeUp"
-            android:layout_marginTop="70dp"
+            android:layout_below="@id/description"
+            android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:text="@string/button_send"
             android:textSize="10pt"
-            android:textColor="@color/actionbar_text"
+            android:textColor="@color/colorPrimary"
             android:id="@+id/button_setAlarm" />
 
         <TextView
-            android:id="@+id/textView_alarmTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:text="or"
+            android:textSize="16sp"
+            android:layout_marginTop="6dp"
             android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            android:text=""
-            android:textSize="8pt"
-            android:textColor="@color/actionbar_text"
-            android:layout_alignTop="@id/button_setAlarm"/>
+            android:id="@+id/or"
+            android:layout_below="@id/button_setAlarm"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/or"
+            android:layout_marginTop="6dp"
+            android:layout_centerHorizontal="true"
+            android:text="Save"
+            android:textSize="10pt"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/button_save" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/log_button"
+            android:layout_below="@id/button_save"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src = "@drawable/history_icon"
+            android:tint="@color/colorPrimaryDark"
+            android:padding="5dp"
+            android:background="@drawable/circle_button"
+            android:contentDescription="@string/todo" />
 
     </RelativeLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

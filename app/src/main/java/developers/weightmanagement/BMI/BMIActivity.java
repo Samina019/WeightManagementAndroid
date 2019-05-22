@@ -1,12 +1,15 @@
 package developers.weightmanagement.BMI;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -34,6 +37,7 @@ import java.text.NumberFormat;
 
 import developers.weightmanagement.R;
 import developers.weightmanagement.Program.WeightManagementActivity;
+import developers.weightmanagement.Startup.LoginActivity;
 
 public class BMIActivity extends AppCompatActivity {
 
@@ -727,6 +731,7 @@ public class BMIActivity extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_menu, menu);
+        inflater.inflate(R.menu.menu_logout, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -741,8 +746,43 @@ public class BMIActivity extends AppCompatActivity {
                 startActivity(new Intent(BMIActivity.this, WeightManagementActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 break;
 
+            case R.id.logout:
+
+                AlertDialog();
+                break;
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    void AlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(BMIActivity.this, R.style.MyDialogTheme);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Are you sure you want to logout?")
+            .setCancelable(false)
+            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("weightManagement", 0); // 0 - for private mode
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("userEmail","none");
+                    editor.commit();
+
+                    startActivity(new Intent(BMIActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    BMIActivity.this.finish();
+                }
+
+
+            })
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
 }

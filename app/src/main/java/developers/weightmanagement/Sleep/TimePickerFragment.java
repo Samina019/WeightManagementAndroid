@@ -32,12 +32,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         int minute = 0;
 
         // Use bed/wake time if it was already set by user.
-        if (dialogType==1){
-            if (!SleepFragment.btimepickertime.equals("0")) {
-                hour = SleepFragment.bhour;
-                minute = SleepFragment.bminute;
-            } else { currentTimeFlag = true; }
-        } else if (dialogType==2) {
+        if (dialogType==2) {
             if (!SleepFragment.wtimepickertime.equals("0")) {
                 hour = SleepFragment.whour;
                 minute = SleepFragment.wminute;
@@ -81,18 +76,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         int dialogType=getArguments().getInt("dialogType");
         Log.d("TimePicker onTimeSet",""+dialogType);
 
-        if (dialogType == 1) {
-
-            SleepFragment.bhour = hourOfDay;
-            SleepFragment.bminute = minute;
-
-            SleepFragment.btimepickertime = time;
-            Log.d(TAG, "bed time in timepicker in frag: " + SleepFragment.btimepickertime);
-
-            TextView tv = (TextView) getActivity().findViewById(R.id.textView_bedTime);
-            tv.setText("" + SleepFragment.btimepickertime);
-        }
-        else if (dialogType == 2) {
+        if (dialogType == 2) {
             SleepFragment.whour = hourOfDay;
             SleepFragment.wminute = minute;
 
@@ -106,12 +90,6 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             Log.d(TAG, "Timepicker called with dialogType = 0!");
         }
 
-        Date alarm = SleepFragment.calculateAlarmTime(SleepFragment.bhour, SleepFragment.bminute,
-            SleepFragment.whour, SleepFragment.wminute);
-        Log.d(TAG,"Alarm time calculated: "+alarm);
-        TextView tv = (TextView) getActivity().findViewById(R.id.textView_calcTime);
-        tv.setText("" + String.format("%tl:%<tM%<tp", alarm));
-        Log.d(TAG,"Calculated time updated");
 
     }
 

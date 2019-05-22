@@ -1,14 +1,23 @@
 package developers.weightmanagement.Program;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import developers.weightmanagement.Exercise.exerciseFragment;
+import developers.weightmanagement.FoodFragment;
 import developers.weightmanagement.R;
 import developers.weightmanagement.Sleep.SleepFragment;
+import developers.weightmanagement.Startup.LoginActivity;
 import developers.weightmanagement.Water.Basic.WaterFragment;
 
 public class WeightManagementActivity extends BaseActivity {
@@ -81,6 +90,10 @@ public class WeightManagementActivity extends BaseActivity {
                     SleepFragment sleepFragment = new SleepFragment();
                     return sleepFragment;
 
+                case 3:
+                    FoodFragment foodFragment = new FoodFragment();
+                    return foodFragment;
+
                 default:
                     return null;
             }
@@ -89,8 +102,61 @@ public class WeightManagementActivity extends BaseActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_logout, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.logout:
+
+                AlertDialog();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    void AlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(WeightManagementActivity.this, R.style.MyDialogTheme);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Are you sure you want to logout?")
+            .setCancelable(false)
+            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("weightManagement", 0); // 0 - for private mode
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("userEmail","none");
+                    editor.commit();
+
+                    startActivity(new Intent(WeightManagementActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    WeightManagementActivity.this.finish();
+                }
+
+
+            })
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
 }

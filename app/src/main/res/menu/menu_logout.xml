@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/save"
+        android:id="@+id/logout"
+        android:title="logout"
         app:showAsAction="always"
-        android:title="Save"/>
+        android:icon="@drawable/ic_logout_icon_icons_com_52027" />
 
 
 </menu>

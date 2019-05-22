@@ -1,4 +1,4 @@
-package developers.weightmanagement.Exercise;
+package developers.weightmanagement;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,34 +11,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 import java.util.Objects;
 
-import developers.weightmanagement.R;
 import developers.weightmanagement.Room.DatabaseClient;
 import developers.weightmanagement.Room.Exercise;
-import developers.weightmanagement.Water.Database.DrinkDataSource;
+import developers.weightmanagement.Room.Sleep;
 
-public class ExerciseAdapterActivity extends AppCompatActivity {
+public class SleepAdapterActivity extends AppCompatActivity {
 
     static ListView listView;
-    static List<Exercise> values ;
-    static ArrayAdapter<Exercise> adapter;
+    static List<Sleep> values ;
+    static ArrayAdapter<Sleep> adapter;
 
-    private static DrinkDataSource db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sleep_adapter);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-        setContentView(R.layout.activity_exercise_adapter);
         setTitle("History");
 
         getData();
-
     }
 
     private void getData(){
@@ -56,8 +52,8 @@ public class ExerciseAdapterActivity extends AppCompatActivity {
 
                 // Get Data
                 values= DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
-                    .exerciseDao()
-                    .allExercisesRecord(email);
+                    .sleepDao()
+                    .allSleepRecord(email);
 
                 return null;
             }
@@ -85,11 +81,11 @@ public class ExerciseAdapterActivity extends AppCompatActivity {
         return true;
     }
 
-    private class myListAdapter extends ArrayAdapter<Exercise> {
+    private class myListAdapter extends ArrayAdapter<Sleep> {
 
-        List<Exercise> Values ;
-        myListAdapter(List<Exercise> values) {
-            super(ExerciseAdapterActivity.this, R.layout.cell_exercise_adapter, values);
+        List<Sleep> Values ;
+        myListAdapter(List<Sleep> values) {
+            super(SleepAdapterActivity.this, R.layout.cell_sleep_adapter, values);
             this.Values=values;
         }
 
@@ -100,43 +96,24 @@ public class ExerciseAdapterActivity extends AppCompatActivity {
             View itemView = convertView;
             if (itemView == null) {
                 itemView = getLayoutInflater().inflate(
-                    R.layout.cell_exercise_adapter, parent, false);
+                    R.layout.cell_sleep_adapter, parent, false);
             }
 
             TextView date=itemView.findViewById(R.id.tvDate);
-            TextView name=itemView.findViewById(R.id.tvExerciseName);
-            TextView cals=itemView.findViewById(R.id.tvCals);
-            ImageView image=itemView.findViewById(R.id.ivImage);
+            TextView bedTime=itemView.findViewById(R.id.tvBedTime);
+            TextView wakeTime=itemView.findViewById(R.id.tvWakeTime);
             ImageButton shareButton=itemView.findViewById(R.id.forward);
 
-            name.setText(Values.get(position).getExercise_name());
             date.setText(Values.get(position).getDate());
-            cals.setText(Values.get(position).getCalories() + " calories burned");
+            bedTime.setText(Values.get(position).getBedTime());
+            wakeTime.setText(Values.get(position).getWakeTime());
 
-            switch (Values.get(position).getExercise_name()){
-
-                case "Walking":
-                    image.setImageResource(R.drawable.walkk);
-                    break;
-
-                case "Running":
-                    image.setImageResource(R.drawable.run);
-                    break;
-
-                case "Cycling":
-                    image.setImageResource(R.drawable.bicycle);
-                    break;
-
-                default:
-                    break;
-
-            }
 
             shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String text =  "I've just been reminded to burned " +Values.get(position).getCalories() +
-                        " calories through " + Values.get(position).getExercise_name()+" by Weight Management App!";
+                    String text =  "I've just been reminded that I slept at " +Values.get(position).getBedTime()+
+                        " and wake up at " + Values.get(position).getWakeTime()+ " by Weight Management App!";
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
                     sendIntent.putExtra(Intent.EXTRA_TEXT,text);
@@ -154,4 +131,3 @@ public class ExerciseAdapterActivity extends AppCompatActivity {
     }
 
 }
-

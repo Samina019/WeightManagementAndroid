@@ -230,5 +230,7 @@
     <string name="_240_ml">240 ml</string>
     <string name="_1500_ml">1500 ml</string>
     <string name="drank">Drank</string>
+    <string name="food">Food</string>
+    <string name="add_food">Add Food</string>
 
 </resources>

@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -458,25 +459,62 @@ public class ExerciseDetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.save:
-                String userEmail,name,exerciseType,userWeight,time,cals;
 
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("weightManagement", 0); // 0 - for private mode
-                userEmail=pref.getString("userEmail", "");
-                name=exerciseName.getText().toString();
-                exerciseType=type;
-                userWeight=weight.getText().toString();
-                time=amount.getText().toString() + " min";
-                cals=calories.getText().toString();
+                if(isValid()){
+                    String userEmail,name,exerciseType,userWeight,time,cals;
 
-                @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
-                String date = df.format(Calendar.getInstance().getTime());
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("weightManagement", 0); // 0 - for private mode
+                    userEmail=pref.getString("userEmail", "");
+                    name=exerciseName.getText().toString();
+                    exerciseType=type;
+                    userWeight=weight.getText().toString();
+                    time=amount.getText().toString() + " min";
+                    cals=calories.getText().toString();
 
-                saveData(date,userEmail,name,exerciseType,userWeight,time,cals);
+                    @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+                    String date = df.format(Calendar.getInstance().getTime());
+
+                    saveData(date,userEmail,name,exerciseType,userWeight,time,cals);
+
+                }
 
                 break;
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    boolean isEmpty(EditText text) {
+        CharSequence str = text.getText().toString();
+        return TextUtils.isEmpty(str);
+    }
+
+    private boolean isValid(){
+
+        if (isEmpty(weight)) {
+            weight.setError("Enter Weight");
+            weight.setFocusable(true);
+            weight.setFocusableInTouchMode(true);
+            weight.requestFocus();
+            return false;
+        }
+        else {
+            weight.setError(null);
+        }
+
+        if (isEmpty(amount)) {
+            amount.setError("Enter exercise time");
+            amount.setFocusable(true);
+            amount.setFocusableInTouchMode(true);
+            amount.requestFocus();
+            return false;
+        }
+        else {
+            amount.setError(null);
+        }
+
+
+        return true;
     }
 
     private void saveData(final String date,final String userEmail, final String name, final String exerciseType, final String userWeight, final String time, final String userCaloriies){
@@ -524,6 +562,7 @@ public class ExerciseDetailActivity extends AppCompatActivity {
                     weight.setText("");
                     amount.setText("");
                     calories.setText("0");
+                    weight.requestFocus();
 
                 }
 
