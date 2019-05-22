@@ -1,4 +1,4 @@
-package developers.weightmanagement;
+package developers.weightmanagement.Food;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
+import developers.weightmanagement.R;
 import developers.weightmanagement.Room.DatabaseClient;
 import developers.weightmanagement.Room.Food;
 

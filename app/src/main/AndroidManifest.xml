@@ -17,16 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".FoodAdapterActivity"></activity>
-        <activity android:name=".AddFoodActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".Food.FoodAdapterActivity"></activity>
+        <activity android:name=".Food.AddFoodActivity" />
+        <activity android:name=".Startup.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SleepAdapterActivity" />
+        <activity android:name=".Sleep.SleepAdapterActivity" />
         <activity
             android:name=".Startup.LoginActivity"
             android:launchMode="singleTop"

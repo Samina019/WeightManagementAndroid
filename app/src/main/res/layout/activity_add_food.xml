@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:background="@drawable/background"
-    tools:context=".AddFoodActivity">
+    tools:context=".Food.AddFoodActivity">
 
     <LinearLayout
         android:background="@drawable/border_shadow"

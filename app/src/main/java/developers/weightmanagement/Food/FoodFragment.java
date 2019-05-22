@@ -1,11 +1,9 @@
-package developers.weightmanagement;
+package developers.weightmanagement.Food;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +12,10 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import java.util.Objects;
+
+import developers.weightmanagement.Food.AddFoodActivity;
+import developers.weightmanagement.Food.FoodAdapterActivity;
+import developers.weightmanagement.R;
 
 public class FoodFragment extends Fragment {
 
@@ -44,7 +46,7 @@ public class FoodFragment extends Fragment {
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,AddFoodActivity.class);
+                Intent intent=new Intent(context, AddFoodActivity.class);
                 intent.putExtra("mealType","Breakfast");
                 startActivity(intent);
             }

@@ -1,4 +1,4 @@
-package developers.weightmanagement;
+package developers.weightmanagement.Startup;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import developers.weightmanagement.BMI.BMIActivity;
-import developers.weightmanagement.Startup.LoginActivity;
+import developers.weightmanagement.R;
 
 public class SplashActivity extends AppCompatActivity {
 

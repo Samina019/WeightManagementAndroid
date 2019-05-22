@@ -1,4 +1,4 @@
-package developers.weightmanagement;
+package developers.weightmanagement.Food;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,24 +17,27 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Objects;
 
+import developers.weightmanagement.R;
 import developers.weightmanagement.Room.DatabaseClient;
-import developers.weightmanagement.Room.Exercise;
-import developers.weightmanagement.Room.Sleep;
+import developers.weightmanagement.Room.Food;
+import developers.weightmanagement.Water.Database.DrinkDataSource;
 
-public class SleepAdapterActivity extends AppCompatActivity {
+public class FoodAdapterActivity extends AppCompatActivity {
 
     static ListView listView;
-    static List<Sleep> values ;
-    static ArrayAdapter<Sleep> adapter;
+    static List<Food> values ;
+    static ArrayAdapter<Food> adapter;
 
+    private static DrinkDataSource db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sleep_adapter);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+        setContentView(R.layout.activity_exercise_adapter);
         setTitle("History");
 
         getData();
+
     }
 
     private void getData(){
@@ -52,8 +55,8 @@ public class SleepAdapterActivity extends AppCompatActivity {
 
                 // Get Data
                 values= DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
-                    .sleepDao()
-                    .allSleepRecord(email);
+                    .foodDao()
+                    .allFoodRecord(email);
 
                 return null;
             }
@@ -81,11 +84,11 @@ public class SleepAdapterActivity extends AppCompatActivity {
         return true;
     }
 
-    private class myListAdapter extends ArrayAdapter<Sleep> {
+    private class myListAdapter extends ArrayAdapter<Food> {
 
-        List<Sleep> Values ;
-        myListAdapter(List<Sleep> values) {
-            super(SleepAdapterActivity.this, R.layout.cell_sleep_adapter, values);
+        List<Food> Values ;
+        myListAdapter(List<Food> values) {
+            super(FoodAdapterActivity.this, R.layout.cell_food_adapter, values);
             this.Values=values;
         }
 
@@ -96,24 +99,31 @@ public class SleepAdapterActivity extends AppCompatActivity {
             View itemView = convertView;
             if (itemView == null) {
                 itemView = getLayoutInflater().inflate(
-                    R.layout.cell_sleep_adapter, parent, false);
+                    R.layout.cell_food_adapter, parent, false);
             }
 
-            TextView date=itemView.findViewById(R.id.tvDate);
-            TextView bedTime=itemView.findViewById(R.id.tvBedTime);
-            TextView wakeTime=itemView.findViewById(R.id.tvWakeTime);
+            TextView tvFoodName=itemView.findViewById(R.id.tvFoodName);
+            TextView tvDate=itemView.findViewById(R.id.tvDate);
+            TextView tvMealType=itemView.findViewById(R.id.tvMealType);
+            TextView tvCalories=itemView.findViewById(R.id.tvCalories);
+            TextView tvCarbs=itemView.findViewById(R.id.tvCarbs);
+            TextView tvProteins=itemView.findViewById(R.id.tvFats);
+            TextView tvFats=itemView.findViewById(R.id.tvProtiens);
             ImageButton shareButton=itemView.findViewById(R.id.forward);
 
-            date.setText(Values.get(position).getDate());
-            bedTime.setText(Values.get(position).getBedTime());
-            wakeTime.setText(Values.get(position).getWakeTime());
-
+            tvFoodName.setText(Values.get(position).getFoodName());
+            tvDate.setText(Values.get(position).getDate());
+            tvMealType.setText(Values.get(position).getMealType());
+            tvCalories.setText(Values.get(position).getCalories());
+            tvCarbs.setText(Values.get(position).getCarbohydrates());
+            tvProteins.setText( Values.get(position).getProteins());
+            tvFats.setText(Values.get(position).getFats());
 
             shareButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String text =  "I've just been reminded that I slept at " +Values.get(position).getBedTime()+
-                        " and wake up at " + Values.get(position).getWakeTime()+ " by Weight Management App!";
+                    String text =  "I've just been reminded that I eat " + Values.get(position).getCalories()
+                    + " calories by Weight Management App!";
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
                     sendIntent.putExtra(Intent.EXTRA_TEXT,text);
@@ -131,3 +141,4 @@ public class SleepAdapterActivity extends AppCompatActivity {
     }
 
 }
+

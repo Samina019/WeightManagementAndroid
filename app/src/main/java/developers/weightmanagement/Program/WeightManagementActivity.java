@@ -14,7 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import developers.weightmanagement.Exercise.exerciseFragment;
-import developers.weightmanagement.FoodFragment;
+import developers.weightmanagement.Food.FoodFragment;
 import developers.weightmanagement.R;
 import developers.weightmanagement.Sleep.SleepFragment;
 import developers.weightmanagement.Startup.LoginActivity;

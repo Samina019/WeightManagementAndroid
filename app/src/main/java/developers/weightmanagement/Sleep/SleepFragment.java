@@ -31,7 +31,6 @@ import java.util.Objects;
 import developers.weightmanagement.R;
 import developers.weightmanagement.Room.DatabaseClient;
 import developers.weightmanagement.Room.Sleep;
-import developers.weightmanagement.SleepAdapterActivity;
 
 public class SleepFragment extends Fragment {
 

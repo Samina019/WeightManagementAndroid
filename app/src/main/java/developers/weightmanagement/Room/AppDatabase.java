@@ -2,7 +2,7 @@ package developers.weightmanagement.Room;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-@Database(entities = {Register.class,Exercise.class,Sleep.class,Food.class}, version = 4)
+@Database(entities = {Register.class,Exercise.class,Sleep.class,Food.class}, version = 4,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract RegisterDao registerDao();
